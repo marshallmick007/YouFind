@@ -1,0 +1,22 @@
+
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-12">
+      <div class="input-group mb-3">
+        <input #searchInput type="text" class="form-control"
+               placeholder="Search YouFind..."
+               (input)="performSearch(searchInput.value)" />
+        <div class="input-group-append">
+          <button class="btn btn-dark" type="button" id="button-addon">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="search-result">
+      <li *ngFor="let person of results$ | async">
+        <a routerLink="/detail/{{person.id}}">
+          {{person.name}}
+        </a>
+      </li>
+    </ul>
+  </div>
