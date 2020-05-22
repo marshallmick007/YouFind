@@ -4,3 +4,9 @@
     padding-top: 50px;
   }
 }
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 720px;
+  }
+}

@@ -1,0 +1,23 @@
+@import "variables";
+
+.search-outline {
+  border: 1px solid $you_brand_color;
+  border-radius: 3px;
+  padding: 0.2rem;
+}
+
+input[type="text"] {
+  border: 0px;
+
+  &:focus {
+    outline: 0;
+    border-color: transparent;
+    box-shadow: 0 1px 1px transparent inset, 0 0 1px transparent;
+    outline: 0 none;
+  }
+}
+
+.results-message {
+  height: 3rem;
+  line-height: 3rem;
+}

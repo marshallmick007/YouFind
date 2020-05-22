@@ -1,0 +1,36 @@
+@import "variables";
+
+.search-results-item {
+  &:hover {
+    background: var(--light);
+    cursor: pointer;
+
+    .action-icon {
+      path {
+        fill: $you_brand_color;
+      }
+    }
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  border: 2px solid black;
+  background: gray;
+}
+
+.person-title {
+  font-size: 1.2rem;
+}
+
+.person-subtitle {
+  font-size: 0.7rem;
+}
+
+.action-icon {
+  path {
+    fill: var(--gray);
+  }
+}

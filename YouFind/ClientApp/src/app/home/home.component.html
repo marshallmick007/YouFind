@@ -1,22 +1,40 @@
-
-  <div class="row justify-content-sm-center">
-    <div class="col-sm-12">
-      <div class="input-group mb-3">
-        <input #searchInput type="text" class="form-control"
-               placeholder="Search YouFind..."
-               (input)="performSearch(searchInput.value)" />
-        <div class="input-group-append">
-          <button class="btn btn-dark" type="button" id="button-addon">Search</button>
-        </div>
+<div class="row justify-content-sm-center">
+  <div class="col-sm-12 search-outline">
+    <div class="input-group">
+      <input
+        #searchInput
+        type="text"
+        class="form-control"
+        placeholder="Search YouFind..."
+        (input)="performSearch(searchInput.value)"
+      />
+      <div class="input-group-append">
+        <button class="btn btn-dark" type="button" id="button-addon">
+          Search
+        </button>
+      </div>
+    </div>
+    <div class="search-results mb-2" *ngIf="showResults">
+      <hr />
+      <div *ngIf="results$ | loading | async as results">
+        <ng-template [ngIf]="results.value">
+          <app-results-item
+            *ngFor="let person of results.value"
+            [person]="person"
+          ></app-results-item>
+        </ng-template>
+        <ng-template [ngIf]="results.noresults">
+          <div class="results-message text-center text-muted">
+            No results found for <em>{{ searchInput.value }}</em
+            >.
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="results.loading">
+          <div class="results-message text-center text-muted">
+            Searching YouFind...
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>
-  <div class="row">
-    <ul class="search-result">
-      <li *ngFor="let person of results$ | async">
-        <a routerLink="/detail/{{person.id}}">
-          {{person.name}}
-        </a>
-      </li>
-    </ul>
-  </div>
+</div>
