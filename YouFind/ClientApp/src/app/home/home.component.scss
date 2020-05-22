@@ -21,3 +21,9 @@ input[type="text"] {
   height: 3rem;
   line-height: 3rem;
 }
+
+.search-results-container {
+  max-height: 400px;
+  overflow: hidden;
+  overflow-y: scroll;
+}

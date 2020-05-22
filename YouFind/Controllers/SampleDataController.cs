@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using YouFind.Data.Entities;
 
 namespace YouFind.Controllers
 {
@@ -13,6 +14,8 @@ namespace YouFind.Controllers
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
+
+        
 
         [HttpGet( "[action]" )]
         public IEnumerable<WeatherForecast> WeatherForecasts()

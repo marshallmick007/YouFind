@@ -10,6 +10,7 @@ import {
   map,
   startWith,
   defaultIfEmpty,
+  tap,
 } from "rxjs/operators";
 import { PersonSearchService } from "../person-search/person-search.service";
 
@@ -29,14 +30,15 @@ export class HomeComponent implements OnInit {
   performSearch(term: string): void {
     this.showResults = term !== "";
     this.isSearching = this.showResults;
-    //console.log("Performing search for ", term);
+    console.log("Performing search for ", term);
     this.search.next(term);
   }
 
   ngOnInit(): void {
     this.results$ = this.search.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(300),
+      tap( (term) => console.log('pipe term=', term)),
+      // wait after each keystroke before considering the term
+      debounceTime(175),
 
       // ignore new term if same as previous term
       distinctUntilChanged(),

@@ -16,7 +16,10 @@
     </div>
     <div class="search-results mb-2" *ngIf="showResults">
       <hr />
-      <div *ngIf="results$ | loading | async as results">
+      <div
+        class="search-results-container"
+        *ngIf="results$ | loading | async as results"
+      >
         <ng-template [ngIf]="results.value">
           <app-results-item
             *ngFor="let person of results.value"

@@ -13,11 +13,13 @@ namespace YouFind.Data
             this.Interests = new List<string>();
         }
 
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
         public Address Address { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
 
         public int Age { get; set; }
 

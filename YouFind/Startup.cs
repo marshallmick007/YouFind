@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.IO;
+using System.Reflection;
+using YouFind.Configuration;
 
 namespace YouFind
 {
@@ -21,11 +25,39 @@ namespace YouFind
         {
             services.AddMvc().SetCompatibilityVersion( CompatibilityVersion.Version_2_1 );
 
+
+            // Normally you would have a more enterprisey way to read database
+            // connection strings from, but to make sure this app works on 
+            // machines other than my own, we recompute the MDF file path here
+            string connectionString = BuildConnectionString();
+
+            AppConfiguration appConfig = new AppConfiguration( connectionString );
+            services.AddSingleton<IAppConfiguration>( appConfig );
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles( configuration =>
              {
                  configuration.RootPath = "ClientApp/dist";
              } );
+        }
+
+        private string BuildConnectionString()
+        {
+            string retval = string.Empty;
+            string connStringFormat = "data source=(localdb)\\mssqllocaldb;AttachDbFilename={0}\\YouFind.mdf;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+            string appPath = Path.GetDirectoryName( Assembly.GetExecutingAssembly().Location );
+
+            string path = Path.Combine( appPath, "..\\..\\..\\App_Data" );
+
+            DirectoryInfo directory = new DirectoryInfo( path );
+
+            if ( directory.Exists )
+            {
+                retval = string.Format( connStringFormat, directory.FullName );
+            }
+
+
+            return retval;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
