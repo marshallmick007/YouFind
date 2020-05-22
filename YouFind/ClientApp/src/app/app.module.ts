@@ -10,8 +10,8 @@ import { HomeComponent } from "./home/home.component";
 import { CounterComponent } from "./counter/counter.component";
 import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { LoadingPipe } from "./loading.pipe";
-import { ResultsItemComponent } from './results-item/results-item.component';
-import { PersonProfileComponent } from './person-profile/person-profile.component';
+import { ResultsItemComponent } from "./results-item/results-item.component";
+import { PersonProfileComponent } from "./person-profile/person-profile.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { PersonProfileComponent } from './person-profile/person-profile.componen
     FormsModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
-      { path: "counter", component: CounterComponent },
+      { path: "person", component: PersonProfileComponent },
       { path: "fetch-data", component: FetchDataComponent },
     ]),
   ],

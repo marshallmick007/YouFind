@@ -1,0 +1,27 @@
+@import "variables";
+
+.person-profile {
+  min-height: 400px;
+  border: 1px solid var(--gray);
+  border-radius: 3px;
+}
+
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 80px;
+  border: 2px solid $you_brand_color;
+  background: var(--light);
+  margin: 0 auto;
+
+  img.face {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    margin: 4px;
+  }
+}
+
+.profile-item {
+  width: 100%;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Person } from "../models/person.model";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-results-item",
@@ -9,7 +10,12 @@ import { Person } from "../models/person.model";
 export class ResultsItemComponent implements OnInit {
   @Input() person: Person;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  navigateToProfile() {
+    this.router.navigate(["person"], { state: { person: this.person } });
+    //this.router.navigateByUrl()
+  }
 }

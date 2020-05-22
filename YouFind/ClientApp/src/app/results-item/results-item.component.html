@@ -1,6 +1,11 @@
-<div class="search-results-item pt-1 pb-1 ml-1 mr-1 row align-items-center">
+<div
+  class="search-results-item pt-1 pb-1 ml-1 mr-1 row align-items-center"
+  (click)="navigateToProfile()"
+>
   <div class="col-2 col-md-1">
-    <div class="avatar"></div>
+    <div class="avatar">
+      <img class="face" src="/profiles/1.jpg" />
+    </div>
   </div>
   <div class="col-10 col-md-10 d-flex flex-column">
     <div class="person-title text-dark font-weight-light">
