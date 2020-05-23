@@ -30,22 +30,27 @@ export class HomeComponent implements OnInit {
   performSearch(term: string): void {
     this.showResults = term !== "";
     this.isSearching = this.showResults;
-    console.log(`Performing search for '${term}'`);
+    //console.log(`Performing search for '${term}'`);
     this.search.next(term);
   }
 
   ngOnInit(): void {
     this.results$ = this.search.pipe(
-      tap((term) => console.log("pipe term=", term)),
       // wait after each keystroke before considering the term
       debounceTime(175),
 
       // ignore new term if same as previous term
       distinctUntilChanged(),
-
+      tap(() => (this.isSearching = true)),
       // switch to new search observable each time the term changes
       switchMap((term: string) =>
-        this.personService.search(term).pipe(defaultIfEmpty(null))
+        this.personService.search(term).pipe(
+          defaultIfEmpty(null),
+          tap(() => {
+            //console.log("searching complete");
+            this.isSearching = false;
+          })
+        )
       )
       //concat(
       //  of({ type: "searching" }),

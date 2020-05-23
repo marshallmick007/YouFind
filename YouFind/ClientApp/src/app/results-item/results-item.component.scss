@@ -11,6 +11,15 @@
       }
     }
   }
+
+  &.searching {
+    //background: var(--light);
+
+    & * {
+      color: var(--light);
+      border-color: var(--light);
+    }
+  }
 }
 
 address {

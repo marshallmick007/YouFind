@@ -28,19 +28,7 @@
         class="search-results-container"
         *ngIf="results$ | loading | async as results"
       >
-        <ng-template [ngIf]="results.value">
-          <app-results-item
-            *ngFor="let person of results.value"
-            [person]="person"
-          ></app-results-item>
-        </ng-template>
-        <ng-template [ngIf]="results.noresults">
-          <div class="results-message text-center text-muted">
-            No results found for <em>{{ searchInput.value }}</em
-            >.
-          </div>
-        </ng-template>
-        <ng-template [ngIf]="results.loading">
+        <ng-template [ngIf]="results.loading || isSearching">
           <div class="results-message results-loading text-center text-muted">
             <div class="lds-ellipsis">
               <div></div>
@@ -48,6 +36,19 @@
               <div></div>
               <div></div>
             </div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="results.value">
+          <app-results-item
+            *ngFor="let person of results.value"
+            [person]="person"
+            [searching]="isSearching"
+          ></app-results-item>
+        </ng-template>
+        <ng-template [ngIf]="results.noresults && !isSearching">
+          <div class="results-message text-center text-muted">
+            No results found for <em>{{ searchInput.value }}</em
+            >.
           </div>
         </ng-template>
       </div>

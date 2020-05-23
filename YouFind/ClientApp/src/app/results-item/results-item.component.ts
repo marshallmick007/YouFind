@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 })
 export class ResultsItemComponent implements OnInit {
   @Input() person: Person;
+  @Input() searching: boolean;
 
   constructor(private router: Router) {}
 
