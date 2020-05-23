@@ -9,7 +9,7 @@ export class LoadingPipe implements PipeTransform {
   transform(val) {
     return isObservable(val)
       ? val.pipe(
-          tap((value: any) => console.log("pipe value", value)),
+          //tap((value: any) => console.log("pipe value", value)),
           map((value: any) => ({
             loading: value.type === "start",
             value: value.type ? value.value : value,

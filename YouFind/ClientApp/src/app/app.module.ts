@@ -12,6 +12,7 @@ import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { LoadingPipe } from "./loading.pipe";
 import { ResultsItemComponent } from "./results-item/results-item.component";
 import { PersonProfileComponent } from "./person-profile/person-profile.component";
+import { ArrayShortenerPipe } from "./arrayShortener.pipe";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PersonProfileComponent } from "./person-profile/person-profile.componen
     CounterComponent,
     FetchDataComponent,
     LoadingPipe,
+    ArrayShortenerPipe,
     ResultsItemComponent,
     PersonProfileComponent,
   ],

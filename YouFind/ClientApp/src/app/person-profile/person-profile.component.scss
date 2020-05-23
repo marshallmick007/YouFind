@@ -2,7 +2,7 @@
 
 .person-profile {
   min-height: 400px;
-  border: 1px solid var(--gray);
+  border: 1px solid $you_brand_color;
   border-radius: 3px;
 }
 
@@ -24,4 +24,21 @@
 
 .profile-item {
   width: 100%;
+}
+
+.profile-item-bottom {
+  position: absolute;
+  bottom: 0px;
+}
+
+.btn-connect {
+  color: $you_brand_color;
+
+  &:hover {
+    color: darken($you_brand_color, 10%);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.1rem lighten($you_brand_color, 40%);
+  }
 }

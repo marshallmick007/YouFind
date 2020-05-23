@@ -30,13 +30,13 @@ export class HomeComponent implements OnInit {
   performSearch(term: string): void {
     this.showResults = term !== "";
     this.isSearching = this.showResults;
-    console.log("Performing search for ", term);
+    console.log(`Performing search for '${term}'`);
     this.search.next(term);
   }
 
   ngOnInit(): void {
     this.results$ = this.search.pipe(
-      tap( (term) => console.log('pipe term=', term)),
+      tap((term) => console.log("pipe term=", term)),
       // wait after each keystroke before considering the term
       debounceTime(175),
 

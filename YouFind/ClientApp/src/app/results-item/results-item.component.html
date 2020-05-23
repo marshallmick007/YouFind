@@ -1,17 +1,27 @@
 <div
-  class="search-results-item pt-1 pb-1 ml-1 mr-1 row align-items-center"
+  class="search-results-item pt-1 pb-1 ml-1 mr-1 mb-2 row align-items-center"
   (click)="navigateToProfile()"
 >
   <div class="col-2 col-md-1">
     <div class="avatar">
-      <img class="face" src="/profiles/1.jpg" />
+      <img class="face" [src]="person.avatar" />
     </div>
   </div>
-  <div class="col-10 col-md-10 d-flex flex-column">
+  <div class="col-6 col-md-6 d-flex flex-column">
     <div class="person-title text-dark font-weight-light">
       {{ person.name }}
+      <div class="text-muted person-age">| Age {{ person.age }}</div>
     </div>
-    <div class="person-subtitle text-muted">Something</div>
+    <div class="person-subtitle text-muted">
+      {{ person.interests | arrayShorten }}
+    </div>
+  </div>
+  <div class="col-4 col-md-4">
+    <address>
+      {{ person.address.addressLine1 }}<br />
+      {{ person.address.city }}, {{ person.address.state }}
+      {{ person.address.postalCode }}
+    </address>
   </div>
   <div class="d-none d-lg-block col-md-1">
     <svg

@@ -79,7 +79,7 @@ namespace YouFind
 
             //app.UseErrorHandlerMiddleware();
 
-            //app.UseUnreliableNetworkSimulatorMiddleware();
+            app.UseUnreliableNetworkSimulatorMiddleware();
 
             app.UseMvc( routes =>
              {

@@ -53,7 +53,20 @@ namespace YouFind.Data
                 retval = q.ToList();
             }
 
+            foreach ( var p in retval )
+            {
+                p.Age = ComputeAge( p.DateOfBirth );
+                p.Avatar = string.Format( "/profiles/{0}.jpg", p.Id );
+            }
+
+            retval.ForEach( x => x.Age = ComputeAge( x.DateOfBirth ) );
+
             return retval;
+        }
+
+        private int ComputeAge( DateTime dateOfBirth )
+        {
+            return (int)Math.Floor( (DateTime.Now - dateOfBirth).TotalDays / 365.25 );
         }
 
         private void SetupMockData()

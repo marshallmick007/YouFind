@@ -9,12 +9,20 @@
         (input)="performSearch(searchInput.value)"
       />
       <div class="input-group-append">
-        <button class="btn btn-dark" type="button" id="button-addon">
+        <button
+          class="btn btn-search"
+          type="button"
+          id="button-addon"
+          (click)="performSearch(searchInput.value)"
+        >
           Search
         </button>
       </div>
     </div>
-    <div class="search-results mb-2" *ngIf="showResults">
+    <div
+      class="search-results mb-2"
+      [style.display]="showResults ? 'block' : 'none'"
+    >
       <hr />
       <div
         class="search-results-container"
@@ -33,11 +41,23 @@
           </div>
         </ng-template>
         <ng-template [ngIf]="results.loading">
-          <div class="results-message text-center text-muted">
-            Searching YouFind...
+          <div class="results-message results-loading text-center text-muted">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
           </div>
         </ng-template>
       </div>
     </div>
+  </div>
+
+  <div
+    class="tag-line text-muted pt-4"
+    [style.display]="showResults ? 'none' : 'block'"
+  >
+    Autocompleting Fake Names since 2020!
   </div>
 </div>

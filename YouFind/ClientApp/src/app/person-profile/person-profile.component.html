@@ -2,13 +2,23 @@
   <div class="col-sm-4">
     <div class="profile-item pb-4">
       <div class="avatar">
-        <img class="face" src="/profiles/1.jpg" />
+        <img class="face" [src]="person.avatar" />
       </div>
     </div>
     <div class="profile-item">
-      <h5 class="text-muted font-bold"><strong>Interests:</strong></h5>
-      <p class="text-muted">Fishing, Hiking, Roller-blading, Cooking</p>
-      <p class="text-muted"><strong>Age:</strong> 25</p>
+      <address class="text-muted">
+        {{ person.name }}<br />
+        {{ person.address.addressLine1 }}<br />
+        {{ person.address.city }}, {{ person.address.state }}
+        {{ person.address.postalCode }}
+      </address>
+    </div>
+    <div class="profile-item">
+      <p class="text-muted"><strong>Age:</strong> {{ person.age }}</p>
+    </div>
+
+    <div class="proile-item profile-item-bottom">
+      <a [routerLink]="['']" class="btn btn-link btn-connect">&larr; Go Back</a>
     </div>
   </div>
   <div class="col-sm-8">
@@ -19,15 +29,19 @@
         </div>
 
         <div class="profile-item">
-          <address>
-            123 Fake Street<br />
-            Anywhere AL, 34109
-          </address>
+          <h5 class="text-muted font-bold"><strong>Interests:</strong></h5>
+          <ul>
+            <li class="text-muted" *ngFor="let i of person.interests">
+              {{ i }}
+            </li>
+          </ul>
         </div>
       </div>
 
       <div class="profile-item profile-footer d-flex flex-row-reverse">
-        <button class="btn btn-link">Connect with {{ person.name }}</button>
+        <button class="btn btn-link btn-connect">
+          Connect with {{ person.name }} &rarr;
+        </button>
       </div>
     </div>
   </div>

@@ -13,6 +13,12 @@
   }
 }
 
+address {
+  margin-bottom: 0px;
+  font-weight: lighter;
+  font-size: 0.8rem;
+}
+
 .avatar {
   width: 40px;
   height: 40px;
@@ -21,14 +27,19 @@
   background: var(--light);
 
   img.face {
-    width: 38px;
-    height: 38px;
+    width: 37px;
+    height: 37px;
     border-radius: 19px;
   }
 }
 
 .person-title {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  line-height: 1.3rem;
+}
+.person-age {
+  display: inline-block;
+  font-size: 0.7rem;
 }
 
 .person-subtitle {
