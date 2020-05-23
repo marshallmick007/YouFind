@@ -13,8 +13,9 @@ namespace YouFind
         {
             this.Id = Guid.NewGuid().ToString();
             this.Path = requestPath;
-
-            this.IsApi = this.Path.StartsWithSegments( "/api", StringComparison.OrdinalIgnoreCase );
+            if ( this.Path != null ) { 
+                this.IsApi = this.Path.StartsWithSegments( "/api", StringComparison.OrdinalIgnoreCase );
+            }
         }
 
         public string Id { get; private set; }

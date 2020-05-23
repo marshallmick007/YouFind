@@ -33,6 +33,8 @@ namespace YouFind
 
             AppConfiguration appConfig = new AppConfiguration( connectionString );
             services.AddSingleton<IAppConfiguration>( appConfig );
+            services.AddSingleton<INetworkSimulator, UnreliableNetworkSimulator>();
+            services.AddSingleton<IApplicationLogger, ApplicationLogger>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles( configuration =>
@@ -77,7 +79,7 @@ namespace YouFind
 
             app.UseLoggingMiddleware();
 
-            //app.UseErrorHandlerMiddleware();
+            app.UseErrorHandlerMiddleware();
 
             app.UseUnreliableNetworkSimulatorMiddleware();
 
