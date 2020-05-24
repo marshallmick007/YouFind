@@ -17,6 +17,6 @@ export class PersonProfileComponent implements OnInit {
       this.router.navigate([""]);
     }
   }
-  person: Person;
+  person: Person = new Person();
   ngOnInit(): void {}
 }

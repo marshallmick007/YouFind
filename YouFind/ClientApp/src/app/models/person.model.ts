@@ -7,4 +7,8 @@ export class Person {
   age: number;
   interests: string[];
   avatar: string;
+
+  constructor() {
+    this.address = new Address();
+  }
 }

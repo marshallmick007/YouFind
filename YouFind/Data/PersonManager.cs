@@ -7,16 +7,16 @@ using YouFind.Data.Entities;
 
 namespace YouFind.Data
 {
-    public class PersonManager
+    public class PersonManager : IPersonManager
     {
-        private List<Person> _mockData = new List<Person>();
+        //private List<Person> _mockData = new List<Person>();
 
         private readonly IAppConfiguration _appConfiguration;
 
-        public PersonManager()
-        {
-            SetupMockData();
-        }
+        //public PersonManager()
+        //{
+        //    SetupMockData();
+        //}
 
         public PersonManager( IAppConfiguration appConfiguration )
         {
@@ -53,14 +53,6 @@ namespace YouFind.Data
                 retval = q.ToList();
             }
 
-            foreach ( var p in retval )
-            {
-                p.Age = ComputeAge( p.DateOfBirth );
-                p.Avatar = string.Format( "/profiles/{0}.jpg", p.Id );
-            }
-
-            retval.ForEach( x => x.Age = ComputeAge( x.DateOfBirth ) );
-
             return retval;
         }
 
@@ -69,6 +61,7 @@ namespace YouFind.Data
             return (int)Math.Floor( (DateTime.Now - dateOfBirth).TotalDays / 365.25 );
         }
 
+        /*
         private void SetupMockData()
         {
             _mockData.Add( new Person() { Id = 1, Name = "Abigail Smith" } );
@@ -86,5 +79,6 @@ namespace YouFind.Data
             _mockData.Add( new Person() { Id = 13, Name = "Marsellis Wallace" } );
 
         }
+        */
     }
 }

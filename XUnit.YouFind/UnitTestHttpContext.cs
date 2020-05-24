@@ -15,10 +15,12 @@ namespace XUnit.YouFind
 
         }
 
+        public RequestContext RequestContext { get; private set; }
+
         public UnitTestHttpContext ForApiRequest()
         {
             this.Request.Path = "/api/test";
-            this.CreateRequestContext();
+            this.RequestContext = this.CreateRequestContext();
 
             return this;
         }
@@ -26,7 +28,7 @@ namespace XUnit.YouFind
         public UnitTestHttpContext ForAssetRequest()
         {
             this.Request.Path = "/SampleApp/dist/angular.js";
-            this.CreateRequestContext();
+            this.RequestContext = this.CreateRequestContext();
 
             return this;
         }

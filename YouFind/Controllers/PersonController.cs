@@ -16,18 +16,32 @@ namespace YouFind.Controllers
     public class PersonController : Controller
     {
         private readonly IAppConfiguration _appConfiguration;
-        public PersonController( IAppConfiguration appConfiguration )
+        private readonly IPersonManager _personManager;
+
+        public PersonController( IAppConfiguration appConfiguration, IPersonManager personManager )
         {
             _appConfiguration = appConfiguration;
+            _personManager = personManager;
         }
 
         [HttpGet]
         [Route( "search" )]
         public IActionResult Search( [FromQuery( Name = "q" )] string searchTerm )
         {
-            PersonManager manager = new PersonManager(_appConfiguration);
+            var results = _personManager.Search( searchTerm );
 
-            var results = manager.Search( searchTerm );
+            if ( results == null )
+            {
+                results = new List<Person>();
+            }
+            else
+            {
+                foreach ( var person in results )
+                {
+                    person.Age = ComputeAge( person.DateOfBirth );
+                    person.Avatar = string.Format( "/profiles/{0}.jpg", person.Id );
+                }
+            }
 
             return new JsonResult( results );
         }
@@ -50,6 +64,13 @@ namespace YouFind.Controllers
             return new JsonResult( count );
         }
 
-        
+        #region Private Methods
+
+        private int ComputeAge( DateTime dateOfBirth )
+        {
+            return (int)Math.Floor( (DateTime.Now - dateOfBirth).TotalDays / 365.25 );
+        }
+
+        #endregion`
     }
 }

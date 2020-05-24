@@ -8,11 +8,14 @@ using System;
 using System.IO;
 using System.Reflection;
 using YouFind.Configuration;
+using YouFind.Data;
 
 namespace YouFind
 {
     public class Startup
     {
+        private bool USE_SPA_DEVELOPMENT_MODE = false;
+
         public Startup( IConfiguration configuration )
         {
             Configuration = configuration;
@@ -35,6 +38,7 @@ namespace YouFind
             services.AddSingleton<IAppConfiguration>( appConfig );
             services.AddSingleton<INetworkSimulator, UnreliableNetworkSimulator>();
             services.AddSingleton<IApplicationLogger, ApplicationLogger>();
+            services.AddTransient<IPersonManager, PersonManager>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles( configuration =>
@@ -84,26 +88,27 @@ namespace YouFind
             app.UseUnreliableNetworkSimulatorMiddleware();
 
             app.UseMvc( routes =>
-             {
-                 routes.MapRoute(
-                     name: "default",
-                     template: "{controller}/{action=Index}/{id?}" );
-             } );
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}" );
+            } );
+
 
             app.UseSpa( spa =>
-             {
+            {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
                 spa.Options.SourcePath = "ClientApp";
-
-                 if ( env.IsDevelopment() )
-                 {
-                     spa.UseAngularCliServer( npmScript: "start" );
-                 }
-             } );
-
-            
+                if ( USE_SPA_DEVELOPMENT_MODE )
+                {
+                    if ( env.IsDevelopment() )
+                    {
+                        spa.UseAngularCliServer( npmScript: "start" );
+                    }
+                }
+            } );
         }
     }
 }
