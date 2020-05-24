@@ -20,7 +20,7 @@ You will need:
 
 - Visual Studio, preferably 2019
 
-The easiest way to run the app is to simply compile through Visual Studio and run via IIS Express. Visual Studio should restore NuGet packages and launch your default browser. If no browser displays, you can navigate to [http://localhost:54344](http://localhost:54344) to begin your journey
+The easiest way to run the app is to simply compile through Visual Studio and run via IIS Express. Visual Studio should restore NuGet packages and launch your default browser. If no browser displays, you can navigate to [http://localhost:54344](http://localhost:54344) to begin your journey.
 
 ## Getting Started - Developer
 
@@ -30,11 +30,11 @@ You will need:
 - NodeJS version 10 or greater, and in your `%PATH%`
 
 To use your system Node version instead of the built-in Visual Studio version, you must
-adjust your `External Web Tools` settings like so
+adjust your `External Web Tools` settings like so:
 
 <img src="./npm_settings.png">
 
-The easiest way to run the app is to simply compile through Visual Studio and run via IIS Express.
+`$(Path)` must be above `$(VsInstalledExtraTools)`, and Node 10 must already be available in your `PATH`
 
 Next, to enable the Angular Live Development server, open `startup.cs` and set
 
