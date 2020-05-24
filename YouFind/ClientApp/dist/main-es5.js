@@ -1220,7 +1220,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-person-profile"]],
       decls: 35,
       vars: 12,
-      consts: [[1, "person-profile", "row", "p-3"], [1, "col-sm-4"], [1, "profile-item", "pb-4"], [1, "avatar"], [1, "face", 3, "src"], [1, "profile-item"], [1, "text-muted"], [1, "proile-item", "profile-item-bottom"], [1, "btn", "btn-link", "btn-connect", 3, "routerLink"], [1, "col-sm-8"], [1, "d-flex", "flex-column", "justify-content-between", "h-100"], [1, "profile-item", "profile-name"], [1, "font-weight-light"], [1, "text-muted", "font-bold"], ["class", "text-muted", 4, "ngFor", "ngForOf"], [1, "profile-item", "profile-footer", "d-flex", "flex-row-reverse"], [1, "btn", "btn-link", "btn-connect"]],
+      consts: [[1, "person-profile", "row", "p-3"], [1, "col-sm-4"], [1, "profile-item", "pb-4"], [1, "avatar"], [1, "face", 3, "src"], [1, "profile-item"], [1, "text-muted"], [1, "proile-item", "profile-item-bottom"], [1, "btn", "btn-link", "btn-connect", 3, "routerLink"], [1, "col-sm-8"], [1, "d-flex", "flex-column", "justify-content-between", "h-100"], [1, "profile-item", "profile-name"], [1, "font-weight-light"], [1, "text-muted", "font-bold"], ["class", "text-muted", 4, "ngFor", "ngForOf"], [1, "profile-item", "profile-footer", "d-flex", "flex-row-reverse"], ["disabled", "", 1, "btn", "btn-link", "btn-connect"]],
       template: function PersonProfileComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);

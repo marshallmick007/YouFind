@@ -2,13 +2,16 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using YouFind.Configuration;
 using YouFind.Data;
+using YouFind.Data.Entities;
 
 namespace YouFind
 {
@@ -40,11 +43,29 @@ namespace YouFind
             services.AddSingleton<IApplicationLogger, ApplicationLogger>();
             services.AddTransient<IPersonManager, PersonManager>();
 
+            TryConnectDatabase( appConfig );
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles( configuration =>
              {
                  configuration.RootPath = "ClientApp/dist";
              } );
+        }
+
+        private void TryConnectDatabase( AppConfiguration appConfig )
+        {
+            try
+            { 
+                using( var db = new YouFindDBContext( appConfig.ConnectionString ) )
+                {
+                    var count = db.People.Count();
+                }
+            }
+            catch ( Exception ex )
+            {
+                Console.WriteLine( "ERROR Attempting to establish a database connection" );
+                Console.WriteLine( ex.ToString() );
+            }
         }
 
         private string BuildConnectionString()
