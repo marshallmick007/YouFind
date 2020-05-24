@@ -12,6 +12,8 @@ The server software comes pre-built with a random network latency simulator, pau
 
 The server runs on a local SQL Server file (included in `APP_DATA`)
 
+A few files have been renamed to enable a seemless first-start experience. Read [Getting Started - Developer]() for directions on how to set your workstation up for development or recompilation of the frontend.
+
 ## Getting Started - Reviewer
 
 You will need:
@@ -39,6 +41,16 @@ Next, to enable the Angular Live Development server, open `startup.cs` and set
 ```csharp
 private bool USE_SPA_DEVELOPMENT_MODE = true;
 ```
+
+Finally, re-enable the `package.json` files
+
+```shell
+cd YouFind\ClientApp
+mv package.json.dev package.json
+mv package-lock.json.dev package-lock.json
+```
+
+Compiling in Visual Studio will then restore `npm` packages, and also broker the Angular CLI build, resulting in a live development environment for the front-end.
 
 ### Shout-outs
 
